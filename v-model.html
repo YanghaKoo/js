@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+
+  <body>
+    <div id = 'simple1'>
+        좋아하는 과일을 골라주세요
+        <input type="checkbox" value="사과" v-model="fruit">사과
+        <input type="checkbox" value="딸기" v-model="fruit">딸기
+        <input type="checkbox" value="당근" v-model="fruit">당근
+        <input type="checkbox" value="수박" v-model="fruit">수박
+        <input type="checkbox" value="참외" v-model="fruit">참외
+    </div>
+
+    <div id="simple2">
+        선택된 과일 : <span id="simple2">{{fruit}}</span>
+    </div>
+
+    <script>
+        var model = {
+            fruit : []
+        }
+
+        var aa = new Vue({
+            el : "#simple1",
+            data : model
+        })
+
+        var bb = new Vue({
+            el : "#simple2",
+            data : model
+        })
+    </script>
+
+  </body>
+</html>
