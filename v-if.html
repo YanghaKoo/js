@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+
+  <body>
+    <div id="account">
+        예금액 : <input type="text" v-model="amount"/>
+        <img v-if="amount < 0" src = "images/error.png"
+        title="마이너스는 허용하지 않습니다."
+        style="width:15px; heigth:15px; vertical-align:middle">
+    </div>
+
+    <script>
+        var model = {
+            amount : 0
+        }
+        
+        var aa = new Vue({
+            el : "#account",
+            data : model
+        })
+    </script>
+
+
+  </body>
+</html>
