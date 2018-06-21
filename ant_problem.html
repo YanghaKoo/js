@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="underscore.js"></script>
+    <meta charset="UTF-8">
+    <title>@@@@@@@@@@@@@@@@@@@</title>
+</head>
+
+<body>
+    <script>
+        function getNext(prev) {
+            var count = 1;
+            var output = ''
+
+            for (var i = 0; i < prev.length; i++) {
+                if (prev[i] == prev[i + 1]) {
+                    count++
+                } else {
+                    output += prev[i] + String(count)
+                    count = 1
+                }
+            }
+
+            return output
+        }
+
+        var first = "1";
+        for (var i = 0; i < 29; i++) {
+            first = getNext(first)
+        }
+        console.log(first)
+
+
+        // 1
+        // 11
+        // 12
+        // 1121
+        // 122111
+        // 112213
+        // 12221131
+        // 1123123111
+    </script>
+</body>
+
+</html>
