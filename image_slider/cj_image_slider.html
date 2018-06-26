@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>@@@@@@@@@@@@@@@@@@@</title>
+    <script src="jquery-3.3.1.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2 id="index-label"></h2>
+    <h1 id="title-label"></h1>
+
+    <div class="viewport">
+        <ul>
+            <li data-title="가나다">
+                <a href="#">
+                    <img src="./images/slide1.jpg" />
+                </a>
+            </li>
+            <li data-title="라마바">
+                <a href="#">
+                    <img src="./images/slide2.jpg" />
+                </a>
+            </li>
+            <li data-title="뿌뿌뿌">
+                <a href="#">
+                    <img src="./images/slide3.jpg" />
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var length = $(".viewport li").length
+        var height = 380
+        var width = 980
+
+        // 아래 2개는 사진들을 가로로 쫙 붙이는 애들이고
+        // 맨위의 css는 한장만 보이게 하기 위해서!
+        $(".viewport").css({
+            width: width,
+            height: height,
+            overflow: "hidden"
+        })
+
+        $(".viewport ul").css({
+            width: width * length
+        })
+
+        $(".viewport li").css({
+            width: width,
+            height: height,
+            float: "left"
+        })
+        //
+
+
+        function moveTo(index) {
+            // index가 정의가 안되어 있을 때
+            if (index === undefined) index = 1
+            index = index % length  // 순환시키기 위함
+
+            $("#index-label").text("0" + (index + 1))
+
+            var title = $($(".viewport li").get(index)).attr("data-title")
+            $("#title-label").text(title)
+
+            $(".viewport ul").animate({
+                marginLeft: -width * index
+            })
+            $("div[data-index]").css({
+                backgroundPosition : "-40px 0"
+            })
+            $("div[data-index="+index+"]").css({
+                backgroundPosition : "-60px 0"
+            })
+        }
+
+
+
+        // 버튼 만들기!! 클로저 때문에 i를 var로 선언하면 안됨!!
+        for (let i = 0; i < length; i++) {
+            $("body").css("background","grey")
+            $("<div></div>")
+                .css({
+                    backgroundImage : "url('./images/bg.slider-nav.png')",
+                    width : 12,
+                    height : 12,
+                    backgroundPosition : "-40px 0",
+                    float : "left",
+                    marginLeft : 5,
+                })
+                .attr("data-index",i)
+                .on("click", function () {
+                    moveTo(i)
+                    currentIndex = i
+                })
+                .appendTo("body")
+        }
+
+
+
+        // 일정시간 반복
+        var currentIndex = 0;
+        setInterval(function () {
+            currentIndex += 1
+            moveTo(currentIndex)
+        }, 3000)
+
+
+        // 초기화
+        moveTo(0);
+
+
+
+
+    </script>
+</body>
+
+</html>
