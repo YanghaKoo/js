@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-3.3.1.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="get-all">모두 가져오기</button>
+    <button id="post-all">추가</button>
+    <button id="get-one">하나가져오기</button>
+    <button id="put-one">하나수정</button>
+    <button id="delete-one">하나제거</button>
+    <hr/>
+    이름 : 
+    <input id="name"><br/>
+    가격 : 
+    <input id="price">
+    <h1>Hello World</h1>
+
+    <script>
+        // 모두가져오기
+        $("#get-all").on("click", function () {
+            $.ajax({
+                url: "/drink",
+                method: "GET",
+                data : {
+                    a : "hello_1",
+                    b : "hello_2"
+                },
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+
+        })
+
+        // 추가
+        $("#post-all").on("click", function () {
+            $.ajax({
+                url: "/drink",
+                method: "POST",
+                data : {
+                    name : $("#name").val(),
+                    price : $("#price").val()
+                },
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+
+        })
+
+        // 하나가져오기
+        $("#get-one").on("click", function () {
+            $.ajax({
+                url: "/drink/0",
+                method: "GET",
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        })
+
+
+        // 하나수정
+        $("#put-one").on("click", function () {
+            $.ajax({
+                url: "/drink/0",
+                method: "PUT",
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        })
+
+
+        // 하나제거
+        $("#delete-one").on("click", function () {
+            $.ajax({
+                url: "/drink/0",
+                method: "DELETE",
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        })
+
+
+
+
+
+
+
+
+
+
+        // $.ajax({
+        //     method: "PUT",
+        //     url: "/data",
+        //     success: function (data, textStatus, xhr) {
+        //         console.log(data)
+        //     }
+        // })
+
+
+
+
+        // setTimeout(function () {
+        //     $.ajax({
+        //         url: "/data.html",
+        //         success: function (data, textStatus, xhr) {
+        //             console.log(data)
+        //             console.log(textStatus)
+        //             $("body").html(data)
+        //         }
+        //     })
+
+
+        // }, 1000)
+
+
+        // $("button").on("click", function () {
+        //     $.ajax({
+        //         url: "data.json",
+        //         success: function (data, textStatus, xhr) {
+        //             data.forEach(item => {
+        //                 $("<h1></h1>").html(`${item.name} - ${item.price}원`).appendTo("body")
+
+        //             });
+        //         }
+        //     })
+        // })
+
+
+    </script>
+</body>
+
+</html>
